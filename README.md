@@ -53,3 +53,25 @@ docker run -d --rm -p 3838:3838 my-shinyapp-image
 ### Open the App in the Browser
 
 Open your web browser and go to http://localhost:3838/. The example app 'Old Faithful Geyser Data' is displayed.
+
+## Deploying to Microsoft Azure as a Web App
+
+We can deploy the dockerised app to Azure as a Webapp by performing the following steps:
+
+1. Create a container registry to store the image of our app.
+2. Build the image in the container registry.
+3. Deploy the image as a web app.
+
+### Create the Container Registry
+
+```
+az acr create --name myregistry --resource-group mygroup --sku standard --admin-enabled true
+```
+
+### Build the Image
+
+```
+az acr build --file Dockerfile --registry myregistry --image myimage .
+```
+
+### Deploy the Webapp
