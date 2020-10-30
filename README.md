@@ -56,6 +56,11 @@ Open your web browser and go to http://localhost:3838/. The example app 'Old Fai
 
 ## Deploying to Microsoft Azure as a Web App
 
+Assuming you have already...
+
+- Got an Azure project you can work in.
+- Have created a resource group for the app.
+
 We can deploy the dockerised app to Azure as a Webapp by performing the following steps:
 
 1. Create a container registry to store the image of our app.
@@ -64,14 +69,26 @@ We can deploy the dockerised app to Azure as a Webapp by performing the followin
 
 ### Create the Container Registry
 
+Use the following command to create a container registry to store the image of the app.
+
 ```
 az acr create --name myregistry --resource-group mygroup --sku standard --admin-enabled true
 ```
+Where:
+
+- `myregistry` is what you want to name your container registry.
+- `mygroup` is the name of the resource group in which the registry will be created.
 
 ### Build the Image
+
+Next we need to build the image in the container registry. Run this from the folder which contains the Dockerfile.
 
 ```
 az acr build --file Dockerfile --registry myregistry --image myimage .
 ```
+Where:
+
+- `myregistry` is the name of your container registry.
+- `myimage` is what you want to name the image in the registry.
 
 ### Deploy the Webapp
