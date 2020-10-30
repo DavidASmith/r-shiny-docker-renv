@@ -10,7 +10,7 @@ It is based on [this blog post](https://www.statworx.com/de/blog/how-to-dockeriz
 
 I you don't have it already, install Docker.
 
-Then, clone this repository.
+Then, move to folder you want to work in and clone this repository.
 
 ```
 git clone https://github.com/DavidASmith/r-shiny-docker-renv.git
@@ -91,4 +91,21 @@ Where:
 - `myregistry` is the name of your container registry.
 - `myimage` is what you want to name the image in the registry.
 
-### Deploy the Webapp
+### Deploy the Web App
+
+To deploy the image as a Web App:
+
+1. In the [Azure portal](https://portal.azure.com/), navigate to the resource group you have been using in the steps above.
+2. Click **+ Add** and select **Web App**. The Create Web App page is displayed.
+3. Enter a **Name** for your app. Note that this will form part of the URL on which the app can be accessed.
+4. Select **Docker Container** as the **Publish** option.
+5. Select **Linux** as the **Operating System**.
+6. Select the **Region** where your app will be hosted.
+7. Select an **App Service Plan** (or leave as default for this example).
+8. Click **Next : Docker >**.
+9. For the **Image Source**, select **Azure Container Registry**.
+10. Select the **Registry** you created in the steps above.
+11. Select the **Image** you created.
+12. Click **Review + create**.
+
+After some time for deployment, you should be able to navigate to the newly created App Service in the portal. On the Overview page there is a URL. Go to this URL to view your app.
